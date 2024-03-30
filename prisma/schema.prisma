@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int      @id @default(autoincrement())
+  username    String
+  email       String   @unique
+  password    String
+  address     String
+  phoneNumber String
+  orders      Orders[] // This line establishes a one-to-many relationship with Orders
+}
+
+model Orders {
+  orderId      Int      @id @default(autoincrement())
+  orderDetails String[]
+  orderAmount  Int
+  address      String
+  customerId   Int
+  customer     User     @relation(fields: [customerId], references: [id]) // This line and the one above establish the connection to the User
+}
+
+model Product {
+  id           Int      @id @default(autoincrement())
+  productName  String
+  productImage String
+  price        String
+  discount     Int
+  stars        Int
+  quantity     Int
+  sales        Int?
+  featured     Boolean
+  description  String
+  categoryId   Int // This is the foreign key
+  category     Category @relation(fields: [categoryId], references: [id])
+}
+
+model Category {
+  id               Int       @id @default(autoincrement())
+  categoryName     String
+  categoryIdentity String
+  categoryImage    String
+  products         Product[] // This indicates a one-to-many relationship with Product
+}
