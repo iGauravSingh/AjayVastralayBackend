@@ -36,7 +36,7 @@ model Product {
   id           Int      @id @default(autoincrement())
   productName  String
   productImage String
-  price        String
+  price        Int
   discount     Int
   stars        Int
   quantity     Int

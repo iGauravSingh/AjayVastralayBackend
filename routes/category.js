@@ -16,8 +16,9 @@ router.get('/getall' , async (req,res) => {
 
 router.post('/addcategory' , async (req,res) => {
     // {id: 1, categoryName: 'For Baby', categoryIdentity: 'baby' ,categoryImage: cat1},
+    console.log(req.body)
     const { categoryName, categoryIdentity, categoryImage } = req.body
-
+    
     
 
     try {
@@ -56,6 +57,8 @@ router.delete('/deletecategory/:id' , async (req,res) => {
         console.log('error in creating order',error)
     }
 })
+
+
 
 
 module.exports = router;
