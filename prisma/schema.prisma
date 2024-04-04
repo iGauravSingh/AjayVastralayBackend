@@ -54,3 +54,9 @@ model Category {
   categoryImage    String
   products         Product[] // This indicates a one-to-many relationship with Product
 }
+
+model Feedback {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+}

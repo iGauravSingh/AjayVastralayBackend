@@ -29,6 +29,11 @@ app.use('/users',require('./routes/users'))
 
 //category routes
 app.use('/category',require('./routes/category'))
+
+
+// feedback route
+app.use('/feedback',require('./routes/feedback'))
+
 // staff routes
 // app.use('/staff',require('./routes/staffRoutes'))
 
